@@ -1,20 +1,20 @@
-const restify = require('restify');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const passport = require('passport');
-const { ERROR_SERVER_EXCEPTION } = require('./utils/api_error');
+import * as restify from 'restify';
+import * as mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
+import * as passport from 'passport';
+import { ERROR_SERVER_EXCEPTION } from './utils/api_error';
 
 // Get the env variables
 dotenv.config();
 
-const { logger } = require('./utils/logger');
-const { route } = require('./route');
-const {
+import logger from './utils/logger';
+import { route } from './route';
+import {
   MONGODB_HOST, MONGODB_DATABASE, MONGODB_USER, MONGODB_PASSWORD, LOGGER_LEVEL,
-} = require('./common/env');
+} from './common/env';
 
 // use the passport
-require('./auth/passport');
+import './auth/passport';
 
 // Set up default mongoose connection
 const mongoDB = `mongodb://${MONGODB_HOST}/${MONGODB_DATABASE}`;
