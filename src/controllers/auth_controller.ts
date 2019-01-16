@@ -1,9 +1,9 @@
-const Errors = require('restify-errors');
+import Errors from 'restify-errors';
 // const { logger } = require('./../utils/logger');
-const { validate } = require('./../utils/validator');
-const User = require('./../models/user');
-const { sign } = require('./../auth/auth');
-const { formatResponse, getUserFromReq } = require('../utils/api_helper');
+import { validate } from './../utils/validator';
+import User from './../models/user';
+import { sign } from './../auth/auth';
+import { formatResponse, getUserFromReq } from '../utils/api_helper';
 
 /**
  * POST /auth/login
@@ -13,7 +13,7 @@ const { formatResponse, getUserFromReq } = require('../utils/api_helper');
  */
 async function login(req, res, next) {
   validate(req, { password: 'string' });
-  const query = {};
+  const query:any = {};
   if (req.body.mobile) {
     query.mobile = req.body.mobile;
   } else if (req.body.username) {

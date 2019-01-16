@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
 import * as auth from '../../src/auth/auth';
-import * as User from '../../src/models/user';
+import User from '../../src/models/user';
 
 const { expect } = chai;
 

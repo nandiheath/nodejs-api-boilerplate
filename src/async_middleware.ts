@@ -3,7 +3,7 @@
  */
 
 import { entityAlreadyExists, internalError } from './utils/api_error';
-import { logger } from './utils/logger';
+import logger from './utils/logger';
 
 export const asyncMiddleware = fn => (req, res, next) => {
   // Catch all the error
