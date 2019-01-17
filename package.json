@@ -38,7 +38,9 @@
     "tslint-config-airbnb": "^5.11.1"
   },
   "scripts": {
-    "test": "mocha --require ts-node/register --recursive -r dotenv/config ./test/**/*.ts dotenv_config_path=.env-test"
+    "test": "mocha --require ts-node/register --recursive -r dotenv/config ./test/**/*.ts dotenv_config_path=.env-test",
+    "compile": "tsc && node built/server.js",
+    "dev": "nodemon -e ts --exec \"npm run compile\""
   },
   "author": "Nandi Wong",
   "license": "ISC"
