@@ -11,7 +11,7 @@ import { formatResponse, getUserFromReq } from '../utils/api_helper';
  * @param {*} res
  * @param {*} next
  */
-async function login(req, res, next) {
+export async function login(req, res, next) {
   validate(req, { password: 'string' });
   const query:any = {};
   if (req.body.mobile) {
@@ -41,7 +41,7 @@ async function login(req, res, next) {
  * @param {*} res
  * @param {*} next
  */
-async function register(req, res, next) {
+export async function register(req, res, next) {
   validate(req, { username: 'string', password: 'string', mobile: 'string' });
   const { username, password, mobile } = req.body;
   const passwordHash = await User.hashPassword(password);
@@ -83,7 +83,7 @@ async function register(req, res, next) {
  *      }
  * }
  */
-async function facebookLogin(req, res, next) {
+export async function facebookLogin(req, res, next) {
   const user = await getUserFromReq(req);
   const token = await sign(user);
   res.send(formatResponse({ user, token }));
@@ -91,17 +91,10 @@ async function facebookLogin(req, res, next) {
 }
 
 
-async function me(req, res, next) {
+export async function me(req, res, next) {
   const user = await getUserFromReq(req);
   res.send(formatResponse({
     user
   }));
   return next();
 }
-
-module.exports = {
-  login,
-  register,
-  facebookLogin,
-  me
-};

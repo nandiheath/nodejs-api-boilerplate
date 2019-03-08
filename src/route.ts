@@ -1,12 +1,12 @@
 import * as passport from 'passport';
 import { asyncMiddleware } from './async_middleware';
 
-const {
+import {
   passportAuthenicate
-} = require('./utils/api_helper');
+} from './utils/api_helper';
 
 // controllers
-const authController = require('./controllers/auth_controller');
+import * as authController from './controllers/auth_controller';
 
 export const route = (server) => {
   // auth
