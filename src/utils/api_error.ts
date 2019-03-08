@@ -18,6 +18,10 @@ export const UnthenticatedRequestError = () => new Errors.UnauthorizedError({ co
 
 export const UserAlreadyExistsError = () => new Errors.BadRequestError({ code: ERROR_USER_ALREADY_EXISTS }, 'user already exists');
 
+export const EntityNotFoundError = () => new Errors.BadRequestError({ code: ERROR_ENTITY_NOT_FOUND }, 'entity not found');
+
+export const EntityAlreadyExistsError = () => new Errors.BadRequestError({ code: ERROR_ENTITY_ALREADY_EXISTS }, 'entity already exists');
+
 // Error when trying to login to a non-exist user
 export const UserNotFoundError = () => new Errors.BadRequestError({ code: ERROR_WRONG_CREDENTIAL }, 'incorrect username/password');
 
