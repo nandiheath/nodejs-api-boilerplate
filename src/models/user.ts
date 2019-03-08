@@ -1,7 +1,9 @@
 import { Document, Schema, Model, model } from 'mongoose';
 import * as PromiseBluebird from 'bluebird';
 import { jsonTransform } from './../utils/model_helper';
-const bcrypt = PromiseBluebird.promisifyAll(require('bcrypt'));
+import * as Bcrypt from 'bcrypt';
+
+const bcrypt = PromiseBluebird.promisifyAll(Bcrypt);
 
 const userSchema = new Schema(
   {
