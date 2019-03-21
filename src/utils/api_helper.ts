@@ -1,7 +1,7 @@
 
-import User from '../models/user';
+import { User } from '../models/user';
 import {
-  InternalError, UserAlreadyExistsError, UnthenticatedRequestError, EntityNotFoundError, EntityAlreadyExistsError
+  InternalError, UserAlreadyExistsError, UnthenticatedRequestError, EntityNotFoundError, EntityAlreadyExistsError,
 } from './api_error';
 const passport = require('passport');
 // const { logger } = require('./../utils/logger');
@@ -25,15 +25,15 @@ export const passportAuthenicate = (authMethod) => {
       req.logIn(user, (err) => {
         if (err) { return next(err); }
         return next();
-      })
+      });
     })(req, res, next);
-  }
-}
+  };
+};
 
 export const formatResponse = (data) => { // eslint-disable-line
   return {
+    data,
     success: true,
-    data
   };
 };
 
@@ -47,7 +47,6 @@ export const formatPagination = (paginationData) => { // eslint-disable-line
     pages: paginationData.pages,
   };
 };
-
 
 export const getUserFromReq = async (req) => {
   const { id } = req.session.passport.user;
@@ -73,17 +72,15 @@ export const getPaginationFromParam = (req) => {
   const limit = ensureInt(req.query.limit, 100);
 
   return {
-    page, limit
+    page, limit,
   };
 };
-
 
 export const listModel = ModelClass => async (req, res, next) => {
   const instances = await ModelClass.paginate({}, getPaginationFromParam(req));
   res.send(formatPagination(instances));
   return next();
 };
-
 
 export const getModel = ModelClass => async (req, res, next) => {
   const { id } = req.params;
@@ -95,7 +92,6 @@ export const getModel = ModelClass => async (req, res, next) => {
   res.send(formatResponse(instance));
   return next();
 };
-
 
 export const createModel = ModelClass => async (req, res, next) => {
   const instance = new ModelClass(req.body);
@@ -142,8 +138,8 @@ export const addSubDocToModel = (ModelClass, fieldName) => async (req, res, next
   // update and return the document
   const result = await instance.updateOne({
     $push: {
-      [fieldName]: { _id: subdoc_id }
-    }
+      [fieldName]: { _id: subdoc_id },
+    },
   });
 
   if (result.ok) {
@@ -168,8 +164,8 @@ export const removeSubDocToModel = (ModelClass, fieldName) => async (req, res, n
 
   const updateDoc = {
     $pull: {
-      [fieldName]: subdoc._id
-    }
+      [fieldName]: subdoc._id,
+    },
   };
   // update and return the document
   const result = await instance.update(updateDoc);
@@ -181,4 +177,3 @@ export const removeSubDocToModel = (ModelClass, fieldName) => async (req, res, n
   }
   return next();
 };
-

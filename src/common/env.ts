@@ -7,4 +7,3 @@ export const MONGODB_USER = process.env.MONGODB_USER || '';
 export const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD || '';
 export const FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID || '';
 export const FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET || '';
-

@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: 'oibs-api',
+    name: 'nodejs-api-boilderplate',
     script: './src/server.js',
     watch: false,
     max_restarts: 5,

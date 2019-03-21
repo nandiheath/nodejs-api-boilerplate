@@ -5,7 +5,7 @@ const auth = require('./auth');
 const facebookTokenStrategy = require('passport-facebook-token');
 const { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET } = require('./../common/env');
 
-import User from './../models/user';
+import { User } from './../models/user';
 
 class JwtStrategy extends passport.Strategy {
   authenticate(req: any): any {
